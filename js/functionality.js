@@ -1,22 +1,43 @@
-var tam = 4;
+var tam;
 var board;
-
-const values = Array.from({ length: 16 }, (_, i) => i + 1);
-
-var name;
+var name = "none";
+var size;
 var timer;
 var seconds = 0;
 var moves = 0;
+
+const values = Array.from({ length: (tam*tam) }, (_, i) => i + 1);
 
 function begin(){
     var randomIndex;
     var value;
     var divElement;
 
-    name = prompt("Whats your name?")
+    //name = prompt("What's your name?")
+    tam = prompt("What is the size of one side of the board")
     document.getElementsByClassName("name")[0].innerHTML = name;
 
+    board = document.getElementsByClassName("board")[0]; //Gets the board div
+    board.style.width = ((tam*102) + 50).toString() + "px"; // Change the width of the board
+
     //Creating board
+    for(var i = 0 ; i < tam ; i++){
+        for(var j = 0 ; j < tam ; j++){
+            var newDiv = document.createElement("div");
+            
+            newDiv.id = i.toString()+j.toString();
+
+            newDiv.textContent = "";
+            
+            newDiv.addEventListener("click", function() {
+                moveBox(i.toString(), j.toString());
+            });
+
+            document.getElementsByClassName("board")[0].appendChild(newDiv);
+        }
+    }
+
+    //Creating array
     board = new Array(tam);
     for(var i = 0 ; i < tam ; i++){
         board[i] = new Array(tam);
