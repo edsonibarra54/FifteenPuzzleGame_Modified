@@ -6,8 +6,6 @@ var timer;
 var seconds = 0;
 var moves = 0;
 
-const values = Array.from({ length: (tam*tam) }, (_, i) => i + 1);
-
 function begin(){
     var randomIndex;
     var value;
@@ -16,6 +14,8 @@ function begin(){
     //name = prompt("What's your name?")
     tam = prompt("What is the size of one side of the board")
     document.getElementsByClassName("name")[0].innerHTML = name;
+
+    const values = Array.from({ length: (tam*tam) }, (_, i) => i + 1);
 
     board = document.getElementsByClassName("board")[0]; //Gets the board div
     board.style.width = ((tam*102) + 50).toString() + "px"; // Change the width of the board
@@ -51,7 +51,7 @@ function begin(){
             board[i][j] = value;
             document.getElementById(i.toString()+j.toString()).innerHTML = value
 
-            if(value == 16){
+            if(value == (tam*tam)){
                 divElement = document.getElementById(i.toString()+j.toString());
                 divElement.style.backgroundColor = "white";
             }
