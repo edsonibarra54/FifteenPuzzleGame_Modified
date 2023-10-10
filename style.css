@@ -1,0 +1,52 @@
+body{
+    background-color: #93b8f5;
+}
+
+.title{
+    font-size: 2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    padding: 20px 0px 20px 0px;
+}
+
+.board{
+    width: 450px;
+    overflow: auto;
+}
+
+.sections{
+    display: flex;
+}
+
+.board div{
+    width: 100px;
+    height: 100px;
+    border: 1px solid white;
+    background-color: #353435;
+    color: white;
+    float: left;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.counters{
+    width: 200px;
+    height: 120px;
+    background-color: #5f98ff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2pc;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.count{
+    display: flex;
+}
