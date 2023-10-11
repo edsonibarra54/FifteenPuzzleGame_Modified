@@ -3,8 +3,15 @@ var board;
 var name = "none";
 var size;
 var timer;
-var seconds = 0;
-var moves = 0;
+var seconds;
+var moves;
+
+timer = window.setInterval(
+    function(){
+        seconds++;
+        document.getElementsByClassName("time")[0].innerHTML = seconds;
+    }, 1000
+);
 
 function begin(){
     var randomIndex;
@@ -45,6 +52,14 @@ function begin(){
         board[i] = new Array(tam);
     }
 
+    //If you are going to test tha game comment the Initializing board section
+
+    /*
+    //Test the game
+
+    testFunctionality();
+    */
+
     //Initializing board
     for(var i = 0 ; i < tam ; i++){
         for(var j = 0 ; j < tam ; j++){
@@ -60,12 +75,10 @@ function begin(){
         }
     }
 
-    timer = window.setInterval(
-        function(){
-            seconds++;
-            document.getElementsByClassName("time")[0].innerHTML = seconds
-        }, 1000
-    );
+    seconds = 0;
+    moves = 0;
+    document.getElementsByClassName("moves")[0].innerHTML = moves
+    
 }
 
 function moveBox(posI, posJ){
@@ -157,7 +170,7 @@ function won(){
     return true;
 }
 
-function prueba(){
+function testFunctionality(){
     var div;
     var r = 0;
     for(var i = 0 ; i < tam ; i++)
@@ -167,10 +180,10 @@ function prueba(){
             document.getElementById(i.toString()+j.toString()).innerHTML = r
         }
 
-    board[3][3] = 15;
-    document.getElementById("33").innerHTML = 15
-    board[3][2] = 16;
-    document.getElementById("32").innerHTML = 16
-    div = document.getElementById("32");
+    board[tam-1][tam-1] = (tam*tam) - 1;
+    document.getElementById((tam-1).toString()+(tam-1).toString()).innerHTML = (tam*tam) - 1;
+    board[tam-1][tam-2] = tam * tam;
+    document.getElementById((tam-1).toString() + (tam-2).toString()).innerHTML = 16;
+    div = document.getElementById((tam-1).toString() + (tam-2).toString());
     div.style.backgroundColor = "white";
 }
