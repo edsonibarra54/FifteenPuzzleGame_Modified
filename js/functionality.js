@@ -18,7 +18,7 @@ function begin(){
     var value;
     var divElement;
 
-    //name = prompt("What's your name?")
+    name = prompt("What's your name?")
     tam = prompt("What is the size of one side of the board")
     document.getElementsByClassName("name")[0].innerHTML = name;
 
@@ -55,9 +55,15 @@ function begin(){
     //If you are going to test tha game comment the Initializing board section
 
     /*
-    //Test the game
+    //Test original
 
-    testFunctionality();
+    testOriginal();
+    */
+
+    /*
+    //Test snai
+
+    testSnail()
     */
 
     //Initializing board
@@ -73,6 +79,46 @@ function begin(){
                 divElement.style.backgroundColor = "white";
             }
         }
+    }
+
+    //Creating snail array
+    snailArray = new Array(tam);
+    for(var i = 0 ; i < tam ; i++){
+        snailArray[i] = new Array(tam);
+    }
+
+    //Initializing snail array
+    var value = 1;
+
+    var rowBegin = 0,
+    rowEnd = tam - 1,
+    columnBegin = 0,
+    columnEnd = tam - 1;
+
+    while(value <= tam * tam){
+        for(var i = columnBegin ; i <= columnEnd ; i++){
+            snailArray[rowBegin][i] = value;
+            value++;
+        }
+        rowBegin++;
+
+        for(var i = rowBegin ; i <= rowEnd ; i++){
+            snailArray[i][columnEnd] = value;
+            value++;
+        }
+        columnEnd--;
+
+        for(var i = columnEnd ; i >= columnBegin ; i--){
+            snailArray[rowEnd][i] = value;
+            value++;
+        }
+        rowEnd--;
+
+        for(var i = rowEnd ; i >= rowBegin ; i--){
+            snailArray[i][columnBegin] = value;
+            value++;
+        }
+        columnBegin++;
     }
 
     seconds = 0;
@@ -159,18 +205,46 @@ function moveBox(posI, posJ){
 }
 
 function won(){
+    var result
+
+    result = original()
+
+    if(result == true)
+        return true
+
+    result = snail()
+
+    if(result == true)
+        return true
+
+    return false;
+}
+
+function snail(){
+    for(var i = 0 ; i < tam ; i++){
+        for(var j = 0 ; j < tam ; j++){
+            if(board[i][j] != snailArray[i][j])
+                return false;
+        }
+    }
+    
+    return true;
+}
+
+function original(){
     var r = 0;
-    for(var i = 0 ; i < tam ; i++)
+    for(var i = 0 ; i < tam ; i++){
         for(var j = 0 ; j < tam ; j++){
             r++;
             if(board[i][j] != r)
                 return false;
         }
+    }
 
     return true;
 }
 
-function testFunctionality(){
+function testOriginal(){
     var div;
     var r = 0;
     for(var i = 0 ; i < tam ; i++)
@@ -186,4 +260,8 @@ function testFunctionality(){
     document.getElementById((tam-1).toString() + (tam-2).toString()).innerHTML = 16;
     div = document.getElementById((tam-1).toString() + (tam-2).toString());
     div.style.backgroundColor = "white";
+}
+
+function testSnail(){
+
 }
